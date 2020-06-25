@@ -55,8 +55,7 @@ $ ibmcloud cf push
 
 * Once Deployed You will see output on your terminal as shown, verify the state is _`running`_:
 
-```
-Invoking 'cf push'...
+<pre><code>Invoking 'cf push'...
 
 Pushing from manifest to org manoj.jahgirdar@in.ibm.com / space dev as manoj.jahgirdar@in.ibm.com...
 
@@ -64,13 +63,23 @@ Pushing from manifest to org manoj.jahgirdar@in.ibm.com / space dev as manoj.jah
 
 Waiting for app to start...
 
-...
+name:              order-processing-pandemic
+requested state:   started
+routes:            <b>order-processing-pandemic.xx-xx.mybluemix.net </b>
+last uploaded:     Sat 16 May 18:05:16 IST 2020
+stack:             cflinuxfs3
+buildpacks:        python
 
-  state     since                  cpu     memory           disk           details
-#0   running   2019-09-17T06:22:59Z   19.5%   103.4M of 512M   343.4M of 1G
-```
+type:            web
+instances:       1/1
+memory usage:    256M
+start command:   python app.py
+     state     since                  cpu     memory           disk           details
+#0   <b>running</b>   2020-05-16T12:36:15Z   25.6%   116.5M of 256M   796.2M of 1
+</code></pre>
 
-* Once the app is deployed you can visit the app link to view the application.
+* Once the app is deployed you can visit the `routes` to view the application.
+
 
 ### 5. Run Locally (optional)
 
