@@ -1,3 +1,44 @@
+# Use Watson Assistant to automate online order processing during pandemics
+
+<Summary> 
+
+<Description>
+
+When the reader has completed this Code Pattern, they will understand how to:
+
+* 
+* 
+* 
+* 
+
+<!--add an image in this path-->
+![](doc/source/images/Architecture.png)
+
+<!--Optionally, add flow steps based on the architecture diagram-->
+## Flow
+
+
+<!--Optionally, update this section when the video is created-->
+# Watch the Video
+
+[![](http://img.youtube.com/vi/vTwmCrSZr_k/0.jpg)](https://www.youtube.com/watch?v=vTwmCrSZr_k)
+
+## Pre-requisites
+
+* [IBM Cloud account](https://www.ibm.com/cloud/): Create an IBM Cloud account.
+
+# Steps
+
+Please follow the below to setup and run this code pattern.
+
+1. [Clone the repo](#1-clone-the-repo)
+2. [Setup Watson Assistant](#2-setup-watson-assistant)
+3. [Setup IBM Db2](#3-setup-ibm-db2)
+4. [Add the Credentials to the Application](#4-add-the-credentials-to-the-application)
+5. [Deploy the Application to Cloud Foundry](#5-deploy-the-application-to-cloud-foundry)
+6. [Analyze the results](#6-analyze-the-results)
+
+
 ### 1. Clone the repo
 
 Clone the `online_order_processing_during_pandemics` repo locally. In a terminal, run:
@@ -5,7 +46,11 @@ Clone the `online_order_processing_during_pandemics` repo locally. In a terminal
 ```bash
 $ git clone https://github.com/IBM/online_order_processing_during_pandemics
 ```
-### 2. Setup IBM Db2
+
+### 2. Setup Watson Assistant
+
+
+### 3. Setup IBM Db2
 
 - Create a [Db2 service](https://cloud.ibm.com/catalog/services/db2).
 
@@ -15,7 +60,7 @@ $ git clone https://github.com/IBM/online_order_processing_during_pandemics
 
 ![](doc/source/images/db2credentials.gif)
 
-### 3. Add the Credentials to the Application
+### 4. Add the Credentials to the Application
 
 - Open the `credentials.json` file and add the Watson Assistant `apikey`, `url` and the `assistant-id` in the placeholders and finally save the file.
 
@@ -29,7 +74,7 @@ $ git clone https://github.com/IBM/online_order_processing_during_pandemics
 
 - Open the `credentials1.json` file and paste the Db2 Credentials and save the file.
 
-### 4. Deploy the Application to Cloud Foundry
+### 5. Deploy the Application to Cloud Foundry
 
 * Make sure you have installed [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started&locale=en-US) before you proceed.
 
@@ -81,7 +126,7 @@ start command:   python app.py
 * Once the app is deployed you can visit the `routes` to view the application.
 
 
-### 5. Run Locally (optional)
+### Run Locally (optional)
 
 >Note: If you prefer to run the application locally, you can follow the steps below. Please note that IBM Db2 will not work locally only the chatbot can be used.
 
@@ -98,3 +143,5 @@ $ docker run -p 8080:8080 covid-19-helpdesk
 ```
 
 - The application will be available on <http://localhost:8080>
+
+### 6. Analyze the results
