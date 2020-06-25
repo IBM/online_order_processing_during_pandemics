@@ -1,0 +1,114 @@
+a,
+a:focus,
+a:hover {
+    color: #fff;
+}
+
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+    color: #333;
+    text-shadow: none;
+    background-color: #fff;
+    border: .05rem solid #fff;
+}
+
+.chatbubble {
+    margin-right: 3%;
+    position: fixed;
+    bottom: 0;
+    right: 30px;
+    transform: translateY(0);
+    transition: transform .3s ease-in-out;
+}
+
+.chatbubble.opened {
+    transform: translateY(732px);
+}
+
+.chatbubble .unexpanded {
+    display: block;
+    background-color: rgb(38, 102, 245);
+    color: #fff;
+    padding: 10px 15px 10px;
+    position: relative;
+    cursor: pointer;
+    width: 350px;
+    border-radius: 10px 10px 0 0;
+}
+
+.chatbubble .expanded {
+    height: 732px;
+    width: 500px;
+    background-color: rgb(244, 244, 244);
+    text-align: left;
+    padding: 10px;
+    color: #333;
+    text-shadow: none;
+    font-size: 14px;
+}
+
+.chatbubble .chat-window {
+    overflow: auto;
+}
+
+.chatbubble .messages {
+    display: none;
+    list-style: none;
+    margin: 0 0 50px;
+    padding: 0;
+}
+
+.chatbubble .messages li {
+    width: 55%;
+    float: left;
+    padding: 10px;
+    border-radius: 5px 5px 5px 0;
+    font-size: 14px;
+    color: #fff;
+    background: rgb(38, 38, 38);
+    margin-bottom: 10px;
+}
+
+.chatbubble .messages li .sender {
+    font-weight: 600;
+}
+
+.chatbubble .messages li.support {
+    float: right;
+    text-align: right;
+    color: #fff;
+    background-color: rgb(38, 102, 245);
+    border-radius: 5px 5px 0 5px;
+}
+
+.chatbubble .chats .input {
+    position: absolute;
+    bottom: 0;
+    padding: 10px;
+    left: 0;
+    width: 100%;
+    background: #f0f0f0;
+    display: none;
+}
+
+.chatbubble .chats .input .form-group {
+    width: 80%;
+}
+
+.chatbubble .chats .input input {
+    width: 100%;
+}
+
+.chatbubble .chats .input button {
+    width: 20%;
+}
+
+.chatbubble .chats {
+    display: none;
+}
+
+.chatbubble .chats.active,
+.chatbubble .login-screen.active {
+    display: block;
+}

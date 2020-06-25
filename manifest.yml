@@ -1,0 +1,6 @@
+
+---
+applications:
+ - name: covid-19-help-desk
+   random-route: true
+   memory: 256M
