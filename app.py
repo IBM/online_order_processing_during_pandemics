@@ -19,7 +19,7 @@ assistantid = ''
 sessionid = ''
 
 
-with open('credentials1.json', 'r') as credentialsFile:
+with open('ibm-db2-credentials.json', 'r') as credentialsFile:
     credentials1 = json.loads(credentialsFile.read())
 
 dsn_driver = "IBM DB2 ODBC DRIVER"
@@ -43,7 +43,7 @@ except:
     pass
 
 
-with open('credentials.json', 'r') as credentialsFile:
+with open('watson-assistant-credentials.json', 'r') as credentialsFile:
     credentials = json.loads(credentialsFile.read())
 
 apikey = credentials.get('apikey')

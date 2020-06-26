@@ -62,7 +62,7 @@ $ git clone https://github.com/IBM/online_order_processing_during_pandemics
 
 ### 4. Add the Credentials to the Application
 
-- Open the `credentials.json` file and add the Watson Assistant `apikey`, `url` and the `assistant-id` in the placeholders and finally save the file.
+- Open the `watson-assistant-credentials.json` file and add the Watson Assistant `apikey`, `url` and the `assistant-id` in the placeholders and finally save the file.
 
 ```json
 {
@@ -72,7 +72,7 @@ $ git clone https://github.com/IBM/online_order_processing_during_pandemics
 }
 ```
 
-- Open the `credentials1.json` file and paste the Db2 Credentials and save the file.
+- Open the `ibm-db2-credentials.json` file and paste the Db2 Credentials and save the file.
 
 ### 5. Deploy the Application to Cloud Foundry
 
@@ -125,8 +125,8 @@ start command:   python app.py
 
 * Once the app is deployed you can visit the `routes` to view the application.
 
-
-### Run Locally (optional)
+### (Optional) Run Locally
+<details><summary> Instructions</summary>
 
 >Note: If you prefer to run the application locally, you can follow the steps below. Please note that IBM Db2 will not work locally only the chatbot can be used.
 
@@ -144,4 +144,46 @@ $ docker run -p 8080:8080 covid-19-helpdesk
 
 - The application will be available on <http://localhost:8080>
 
+</details>
+
 ### 6. Analyze the results
+
+- Visit the app route `order-processing-pandemic.xx-xx.mybluemix.net` to launch the chatbot.
+
+- Click on `Place an order` to place online order with the watson assistant chatbot as shown.
+
+![](doc/source/images/step1.png)
+
+- A Template with available products will be displayed as shown. 
+    
+    1. Select and 3 Items of choice.
+    2. Input the quantity.
+    3. Click on `Confirm`.
+
+![](doc/source/images/ordertemplate.png)
+
+- The orders will be processed one after the other please wait for it to complete.
+
+![](doc/source/images/processorder.gif)
+
+- The chatbot will ask for location permission, kindly allow the permission by clicking the `Allow` button as shown.
+
+![](doc/source/images/location.png)
+
+- This will automatically detect your location close to 65% accuracy. If you are satisfied with the address you can click on `Yes proceed with the address` as shown or if you want to enter your address by yourself you can click on `No I will enter my address` and enter your address.
+
+![](doc/source/images/yesproceed.png)
+
+- Provide your `Name` and `Contact Number` and you will get a thank you message with the order details as shown.
+
+![](doc/source/images/thankyoumsg.png)
+
+- You have successfully placed an order at this point, your order will be saved to Db2 database.
+
+>- Aditionally you can click on `Know more about Covid` as shown.
+
+>![](doc/source/images/knowmore.png)
+
+- From an Admin prespective visit the app route `order-processing-pandemic.xx-xx.mybluemix.net` followed by `/dashboard` for example: `order-processing-pandemic.xx-xx.mybluemix.net/dashboard` and you can view all the user placed orders here as shown.
+
+![](doc/source/images/dashboard.png)
