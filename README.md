@@ -1,15 +1,17 @@
 # Use Watson Assistant to automate online order processing during pandemics
 
-<Summary> 
+How do we stop panic amongst people of hoarding essentials during lockdown? How do we maintain social distancing while procuring essentials? 
 
-<Description>
+In this code pattern, we build an AI-powered backend system that can take the daily essentials orders through online mode. The system processes the incoming text request by converting it to formatted orders list. A effective way of processing the information quickly.
+
+This AI powered backend system can be later connected to the inventory database for optimising supply chain management aswell. This solution will be applicable into various domains such as ordering medicines and ordering daily essentials (groceries), etc.
 
 When the reader has completed this Code Pattern, they will understand how to:
 
-* 
-* 
-* 
-* 
+* Preprocess textual data and extract relevant details.
+* Use IBM DB2 for storing the data.
+* Use and train model on Watson Assistant.
+* Deploy the solution on IBM Cloud.
 
 <!--add an image in this path-->
 ![](doc/source/images/Architecture.png)
