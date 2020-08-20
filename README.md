@@ -232,3 +232,11 @@ $ docker run -p 8080:8080 covid-19-helpdesk
 - From an Admin prespective visit the app route `order-processing-pandemic.xx-xx.mybluemix.net` followed by `/dashboard` for example: `order-processing-pandemic.xx-xx.mybluemix.net/dashboard` and you can view all the user placed orders here as shown.
 
 ![](doc/source/images/dashboard.png)
+
+We have learnt how to set up automated order processing & inventory management system using Watson Assistant & IBM DB2. This solution can be further enhanced by integrating with IBM Sterling service. 
+
+## License
+
+This code pattern is licensed under the Apache License, Version 2. Separate third-party code objects invoked within this code pattern are licensed by their respective providers pursuant to their own separate licenses. Contributions are subject to the [Developer Certificate of Origin, Version 1.1](https://developercertificate.org/) and the [Apache License, Version 2](https://www.apache.org/licenses/LICENSE-2.0.txt).
+
+[Apache License FAQ](https://www.apache.org/foundation/license-faq.html#WhatDoesItMEAN)
