@@ -36,11 +36,14 @@ When the reader has completed this Code Pattern, they will understand how to:
 Please follow the below to setup and run this code pattern.
 
 1. [Clone the repo](#1-clone-the-repo)
-2. [Setup Watson Assistant](#2-setup-watson-assistant)
-3. [Setup IBM Db2](#3-setup-ibm-db2)
-4. [Add the Credentials to the Application](#4-add-the-credentials-to-the-application)
-5. [Deploy the Application to Cloud Foundry](#5-deploy-the-application-to-cloud-foundry)
-6. [Analyze the results](#6-analyze-the-results)
+1. [Setup Watson Assistant](#2-setup-watson-assistant)
+1. [Import the skill](#3-import-the-skill)
+1. [Review the skill](#4-review-the-skill)
+1. [Update the skill](#5-update-the-skill)
+1. [Setup IBM Db2](#6-setup-ibm-db2)
+1. [Add the Credentials to the Application](#7-add-the-credentials-to-the-application)
+1. [Deploy the Application to Cloud Foundry](#8-deploy-the-application-to-cloud-foundry)
+1. [Analyze the results](#9-analyze-the-results)
 
 
 ### 1. Clone the repo
@@ -79,7 +82,19 @@ The file is imported in less than a minute and we should see the confirmation pe
 
 ![](doc/source/images/skill-imported.png)
 
-### 5. Setup IBM Db2
+### 4. Review the skill
+
+After the skill is imported, we should click on the skill to review the `Intents, Entities & Dialog` options which is on the left hand side of the screen. There are other features available like `Autocorrection, Irrelevance Detection, Disambiguation, Webhooks` which can be used to enhance the skill. We can `Import, Export or Delete` Intents by clicking on the options towards the right hand side of the screen. 
+
+![](doc/source/images/review-skill.png)
+
+### 5. Update the skill
+
+We can optionally click on `Try it` on the top right hand side to launch a GUI where we can fire the questions and evaluate the response accordingly. This step will be helpful to make changes to Intents, Entities and/or Dialog flows by making the conversation interactive & meaningful. 
+
+We can update the Intents, Entities & Dialog flows in three different ways. One is to do it manually, second is to import a text file with the details and the third is to make changes dynamically using a code. Navigate to the `code` folder to access the script for making dynamic changes to Intents & Entities. After we run the script, it will take couple of minutes for Watson Assistant to train on new data. The training time is dependent on the amount of new data which is being exposed to Watson Assistant.
+
+### 6. Setup IBM Db2
 
 - Create a [Db2 service](https://cloud.ibm.com/catalog/services/db2).
 
@@ -89,9 +104,9 @@ The file is imported in less than a minute and we should see the confirmation pe
 
 ![](doc/source/images/db2credentials.gif)
 
-### 6. Add the Credentials to the Application
+### 7. Add the Credentials to the Application
 
-- Open the `watson-assistant-credentials.json` file and add the Watson Assistant `apikey`, `url` and the `assistant-id` from step # 2 in the placeholders and finally save the file.
+- Open the `watson-assistant-credentials.json` file and add the Watson Assistant `apikey`, `url` and the `assistant-id` from step #2 in the placeholders and finally save the file.
 
 ```json
 {
@@ -103,7 +118,7 @@ The file is imported in less than a minute and we should see the confirmation pe
 
 - Open the `ibm-db2-credentials.json` file and paste the Db2 Credentials and save the file.
 
-### 7. Deploy the Application to Cloud Foundry
+### 8. Deploy the Application to Cloud Foundry
 
 * Make sure you have installed [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started&locale=en-US) before you proceed.
 
@@ -175,7 +190,7 @@ $ docker run -p 8080:8080 covid-19-helpdesk
 
 </details>
 
-### 8. Analyze the results
+### 9. Analyze the results
 
 - Visit the app route `order-processing-pandemic.xx-xx.mybluemix.net` to launch the chatbot.
 
