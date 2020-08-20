@@ -57,7 +57,7 @@ Create [Watson Assistant service](https://cloud.ibm.com/catalog/services/watson-
 
 In Watson Assistant resource page, click on `Service credentials` and create `New credential` per below.
 
-![]()
+![](doc/source/images/svc-cred.png)
 
 These credentials have to be saved for future reference in this code pattern.
 
@@ -65,11 +65,21 @@ These credentials have to be saved for future reference in this code pattern.
 
 In Watson Assistant resource page, click on `Manage` and hit `Launch Watson Assistant` per below.
 
-![]()
+![](doc/source/images/launch-WA.png)
 
+After the service is launched, we can either create or import the skill. Navigate to the folder `assistant_skill` in this repo and download the file by name `Order_Processing_Skill.json `into your local system. In this code pattern, we have the skill created for you which includes well defined Intents, Entities & Dialog flows which can be ingested into any Watson Assistant service. Click on `Import` as per below.
 
+![](doc/source/images/import-skill.png)
 
-### 3. Setup IBM Db2
+We need to click and select the file `Order_Processing_Skill.json` and hit `Import`
+
+![](doc/source/images/sel-file.png)
+
+The file is imported in less than a minute and we should see the confirmation per below.
+
+![](doc/source/images/skill-imported.png)
+
+### 5. Setup IBM Db2
 
 - Create a [Db2 service](https://cloud.ibm.com/catalog/services/db2).
 
@@ -79,7 +89,7 @@ In Watson Assistant resource page, click on `Manage` and hit `Launch Watson Assi
 
 ![](doc/source/images/db2credentials.gif)
 
-### 4. Add the Credentials to the Application
+### 6. Add the Credentials to the Application
 
 - Open the `watson-assistant-credentials.json` file and add the Watson Assistant `apikey`, `url` and the `assistant-id` from step # 2 in the placeholders and finally save the file.
 
@@ -93,7 +103,7 @@ In Watson Assistant resource page, click on `Manage` and hit `Launch Watson Assi
 
 - Open the `ibm-db2-credentials.json` file and paste the Db2 Credentials and save the file.
 
-### 5. Deploy the Application to Cloud Foundry
+### 7. Deploy the Application to Cloud Foundry
 
 * Make sure you have installed [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started&locale=en-US) before you proceed.
 
@@ -165,7 +175,7 @@ $ docker run -p 8080:8080 covid-19-helpdesk
 
 </details>
 
-### 6. Analyze the results
+### 8. Analyze the results
 
 - Visit the app route `order-processing-pandemic.xx-xx.mybluemix.net` to launch the chatbot.
 
