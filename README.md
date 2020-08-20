@@ -16,14 +16,18 @@ When the reader has completed this Code Pattern, they will understand how to:
 * Deploy the solution on IBM Cloud.
 * Enable processing orders & inventory management on real-time basis.
 
-<!--add an image in this path-->
 ![](doc/source/images/Architecture.png)
 
-<!--Optionally, add flow steps based on the architecture diagram-->
+
 ## Flow
 
+1. Feed the data to Watson Assistant service.
+2. Convert the text into Intents, Entities & enable conversation.
+3. Extract the order & customer details from the text.
+4. These extracted attributes gets stored on Db2 database on cloud.
+5. Visualize the order and customer details from the input text on a dashboard.
 
-<!--Optionally, update this section when the video is created-->
+
 # Watch the Video
 
 [![](http://img.youtube.com/vi/vTwmCrSZr_k/0.jpg)](https://www.youtube.com/watch?v=vTwmCrSZr_k)
