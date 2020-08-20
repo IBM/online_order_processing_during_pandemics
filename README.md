@@ -1,8 +1,10 @@
 # Use Watson Assistant to automate online order processing during pandemics
 
-How do we stop panic amongst people of hoarding essentials during lockdown? How do we maintain social distancing while procuring essentials? 
+How do we stop panic amongst people of hoarding essentials during lockdown? How do we enable people to procure essentials through digital mode? 
 
-In this code pattern, we build an AI-powered backend system that can take the daily essentials orders through online mode. The system processes the incoming text request by converting it to formatted orders list. A effective way of processing the information quickly.
+Nowadays, its a bit risky to visit a supermarket for grocery shopping given the social distancing factor. Our solution offers you online grocery shopping at your fingertips to manage your needs effortlessly. 
+
+In this code pattern, we build an AI-powered backend system that can take the daily essentials orders through online mode. The system processes the incoming text request by converting it to formatted orders list. An effective way of processing the information quickly.
 
 This AI powered backend system can be later connected to the inventory database for optimising supply chain management aswell. This solution will be applicable into various domains such as ordering medicines and ordering daily essentials (groceries), etc.
 
@@ -51,6 +53,21 @@ $ git clone https://github.com/IBM/online_order_processing_during_pandemics
 
 ### 2. Setup Watson Assistant
 
+Create [Watson Assistant service](https://cloud.ibm.com/catalog/services/watson-assistant)
+
+In Watson Assistant resource page, click on `Service credentials` and create `New credential` per below.
+
+![]()
+
+These credentials have to be saved for future reference in this code pattern.
+
+### 3. Import the skill 
+
+In Watson Assistant resource page, click on `Manage` and hit `Launch Watson Assistant` per below.
+
+![]()
+
+
 
 ### 3. Setup IBM Db2
 
@@ -64,7 +81,7 @@ $ git clone https://github.com/IBM/online_order_processing_during_pandemics
 
 ### 4. Add the Credentials to the Application
 
-- Open the `watson-assistant-credentials.json` file and add the Watson Assistant `apikey`, `url` and the `assistant-id` in the placeholders and finally save the file.
+- Open the `watson-assistant-credentials.json` file and add the Watson Assistant `apikey`, `url` and the `assistant-id` from step # 2 in the placeholders and finally save the file.
 
 ```json
 {
