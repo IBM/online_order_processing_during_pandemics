@@ -39,8 +39,8 @@ dsn = (
     "PWD={4};").format(dsn_database, dsn_hostname, dsn_port, dsn_uid, dsn_pwd)
 try:
     conn = ibm_db.connect(dsn, "", "")
-except:
-    pass
+except Exception as e:
+    print("Exception: "+e)
 
 
 with open('watson-assistant-credentials.json', 'r') as credentialsFile:
@@ -134,18 +134,29 @@ def chatbot():
 @app.route('/addDatabaseContents', methods=['GET', 'POST'])
 def addDatabaseContentsJson():
     if request.method == 'POST':
+        try:
+            conn = ibm_db.connect(dsn, "", "")
+        except:
+            pass
+        
         opt = request.form
         data = json.loads(opt['orderDetails'])
-        ids = getIDs() + 1
+        try:
+            ids = getIDs(conn) + 1
+        except:
+            ids = 1
+        
 
         a = "\'"
         n = a+data.get('name')+a
         o = a+data.get('orders')+a
         p = a+data.get('phone')+a
         add = a+data.get('address')+a
-        insert = 'INSERT INTO RVB49192.ORDERS VALUES(%d, %s, %s, %s, %s)' % (
+        insert = 'INSERT INTO {0}.ORDERS VALUES(%d, %s, %s, %s, %s)'.format(dsn_uid) % (
             ids, n, p, o, add)
         
+        print("Insert Statement: "+insert)
+        ibm_db.exec_immediate(conn, insert)
         try:
             ibm_db.exec_immediate(conn, insert)
             return {'flag': 'success'}
@@ -155,7 +166,13 @@ def addDatabaseContentsJson():
 
 @app.route('/getDatabaseContents')
 def getDatabaseContentsJson():
-    select_statement = 'SELECT * FROM RVB49192.ORDERS ORDER BY ID desc;'
+    try:
+        conn = ibm_db.connect(dsn, "", "")
+    except:
+        pass
+    
+    select_statement = 'SELECT * FROM {0}.ORDERS ORDER BY ID desc;'.format(
+        dsn_uid)
     res = ibm_db.exec_immediate(conn, select_statement)
     
     result = ibm_db.fetch_both(res)
@@ -171,8 +188,10 @@ def getDatabaseContentsJson():
         
     return jsonify(resultDict)
 
-def getIDs():
-    select_statement = 'SELECT ID FROM RVB49192.ORDERS ORDER BY ID desc;'
+    
+def getIDs(conn):
+    select_statement = 'SELECT ID FROM {0}.ORDERS ORDER BY ID desc;'.format(
+        dsn_uid)
     stmt = ibm_db.exec_immediate(conn, select_statement)
     finalID = 0
     result = ibm_db.fetch_both(stmt)
@@ -193,7 +212,6 @@ def restartSession():
 def index():
     global sessionid
     if sessionid == '':
-    
         createSession()
     else:
         destroySession()

@@ -4,7 +4,7 @@ var flag = false;
 var exec = 0;
 
 var phone = "1112223333";
-var address = "104, Bhagyanagar, Belgaum";
+var address = "104, ..., ...";
 var nameM = "Manoj";
 var order1 = "black gram 2 kgs";
 var order3 = "Dettol 2 bottles";
@@ -145,6 +145,10 @@ async function watson() {
 
                 itr = itr + 1;
 
+                if (itr == 1) {
+                    bringUpForm.click();
+                }
+
                 if (flag == true)
                     setTimeout(
                         function() {
@@ -152,7 +156,7 @@ async function watson() {
                         }, 1000);
 
 
-                if (itr == 4) {
+                if (itr == 2) {
                     // get Location co-ordinates
                     getLocation();
                     // make api call to get acurate location
@@ -160,7 +164,7 @@ async function watson() {
                     // if user says yes send the location to the watson()
                     // if user says no send no send blank text to watson()
                 }
-                if (itr == 7)
+                if (itr == 5)
                     addToDB();
             }
         }
@@ -304,7 +308,7 @@ async function getStreetLevelLocation(lat, lon) {
 
 function optionsSelected(option) {
     $requestData = $('.ChatInput-input');
-    $requestData.html(option);
+    $requestData.html(option.toString());
     exec = exec + watson();
     return exec
 }
@@ -347,17 +351,17 @@ $('#modalAction').on('click', function() {
                     selectedFromTemplate[i] = product + ' ' + quantity + ' kg';
             }
         }
-
-        if (selectedFromTemplate.length == 2) {
-            optionsSelected(selectedFromTemplate[0]);
-            setTimeout(() => optionsSelected(selectedFromTemplate[1]), 2000);
-        } else if (selectedFromTemplate.length > 2) {
-            optionsSelected(selectedFromTemplate[0]);
-            setTimeout(() => optionsSelected(selectedFromTemplate[1]), 2000);
-            setTimeout(() => optionsSelected(selectedFromTemplate[2]), 4000);
-        } else if (selectedFromTemplate.length == 1) {
-            optionsSelected(selectedFromTemplate[0]);
-        } else {}
+        optionsSelected(selectedFromTemplate);
+        // if (selectedFromTemplate.length == 2) {
+        //     optionsSelected(selectedFromTemplate[0]);
+        //     setTimeout(() => optionsSelected(selectedFromTemplate[1]), 2000);
+        // } else if (selectedFromTemplate.length > 2) {
+        //     optionsSelected(selectedFromTemplate[0]);
+        //     setTimeout(() => optionsSelected(selectedFromTemplate[1]), 2000);
+        //     setTimeout(() => optionsSelected(selectedFromTemplate[2]), 4000);
+        // } else if (selectedFromTemplate.length == 1) {
+        //     optionsSelected(selectedFromTemplate[0]);
+        // } else {}
 
     }, 1000);
 });
@@ -385,16 +389,17 @@ $('#iosAcceptButton').on('click', function() {
             }
         }
 
-        if (selectedFromTemplate.length == 2) {
-            optionsSelected(selectedFromTemplate[0]);
-            setTimeout(() => optionsSelected(selectedFromTemplate[1]), 2000);
-        } else if (selectedFromTemplate.length > 2) {
-            optionsSelected(selectedFromTemplate[0]);
-            setTimeout(() => optionsSelected(selectedFromTemplate[1]), 2000);
-            setTimeout(() => optionsSelected(selectedFromTemplate[2]), 4000);
-        } else if (selectedFromTemplate.length == 1) {
-            optionsSelected(selectedFromTemplate[0]);
-        } else {}
+        optionsSelected(selectedFromTemplate);
+        // if (selectedFromTemplate.length == 2) {
+        //     optionsSelected(selectedFromTemplate[0]);
+        //     setTimeout(() => optionsSelected(selectedFromTemplate), 2000);
+        // } else if (selectedFromTemplate.length > 2) {
+        //     optionsSelected(selectedFromTemplate[0]);
+        //     setTimeout(() => optionsSelected(selectedFromTemplate[1]), 2000);
+        //     setTimeout(() => optionsSelected(selectedFromTemplate[2]), 4000);
+        // } else if (selectedFromTemplate.length == 1) {
+        //     optionsSelected(selectedFromTemplate[0]);
+        // } else {}
 
     }, 1000);
 });
