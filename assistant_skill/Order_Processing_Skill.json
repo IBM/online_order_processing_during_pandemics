@@ -84,33 +84,6 @@
   ],
   "entities": [
     {
-      "entity": "products",
-      "values": [
-        {
-          "type": "synonyms",
-          "value": "Rice",
-          "synonyms": [
-            "Rice 3 Kgs"
-          ]
-        },
-        {
-          "type": "synonyms",
-          "value": "Dettol",
-          "synonyms": [
-            "Dettol 1 Bottle"
-          ]
-        },
-        {
-          "type": "synonyms",
-          "value": "Flour",
-          "synonyms": [
-            "Flour 2 Kgs"
-          ]
-        }
-      ],
-      "fuzzy_match": true
-    },
-    {
       "entity": "covid",
       "values": [
         {
@@ -125,8 +98,45 @@
       "fuzzy_match": true
     },
     {
+      "entity": "products",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Dettol",
+          "synonyms": [
+            "Dettol 1 Bottle"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Flour",
+          "synonyms": [
+            "Flour 2 Kgs"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Rice",
+          "synonyms": [
+            "Rice 3 Kgs"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
       "entity": "stop",
       "values": [
+        {
+          "type": "synonyms",
+          "value": "not needed now",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "nothing",
+          "synonyms": []
+        },
         {
           "type": "synonyms",
           "value": "no",
@@ -146,16 +156,6 @@
           "type": "synonyms",
           "value": "i don't need anything",
           "synonyms": []
-        },
-        {
-          "type": "synonyms",
-          "value": "not needed now",
-          "synonyms": []
-        },
-        {
-          "type": "synonyms",
-          "value": "nothing",
-          "synonyms": []
         }
       ],
       "fuzzy_match": true
@@ -168,6 +168,74 @@
     }
   },
   "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Customer Name",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "What is your contact number?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1597907804178",
+      "context": {
+        "person_name": "<? input.text ?>"
+      },
+      "conditions": "$next",
+      "dialog_node": "node_7_1597907871228"
+    },
+    {
+      "type": "standard",
+      "title": "Understand the Intent",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Okay. Enter the product name and quantity together as comma-separated values."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1587454332998",
+      "conditions": "#order && $next",
+      "dialog_node": "node_6_1597907487753"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1587475880966",
+      "disabled": true,
+      "dialog_node": "response_6_1587476639001"
+    },
     {
       "type": "standard",
       "title": "Address",
@@ -241,77 +309,6 @@
       "dialog_node": "node_2_1587728284240"
     },
     {
-      "type": "response_condition",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "I didn't understand. You can try rephrasing."
-              },
-              {
-                "text": "Can you reword your statement? I'm not understanding."
-              },
-              {
-                "text": "I didn't get your meaning."
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_3_1587475880966",
-      "disabled": true,
-      "dialog_node": "response_6_1587476639001"
-    },
-    {
-      "type": "standard",
-      "title": "Order Details",
-      "output": {
-        "text": {
-          "values": [
-            "What is your address?"
-          ],
-          "selection_policy": "sequential"
-        }
-      },
-      "parent": "node_2_1587444787744",
-      "context": {
-        "order_details": "<? input.text ?>"
-      },
-      "metadata": {
-        "_customization": {
-          "mcr": false
-        }
-      },
-      "conditions": "$next",
-      "dialog_node": "node_7_1587445412065"
-    },
-    {
-      "type": "standard",
-      "title": "Contact Number",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "Thanks $person_name, your contact number is $contact_number. Your order has been placed with $order_details and will be delivered to $address."
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_7_1597907871228",
-      "context": {
-        "contact_number": "<? input.text ?>"
-      },
-      "conditions": "$next",
-      "dialog_node": "node_6_1597907931967"
-    },
-    {
       "type": "standard",
       "title": "Order Details",
       "output": {
@@ -350,62 +347,98 @@
           }
         ]
       },
-      "parent": "node_7_1597907804178",
+      "parent": "node_2_1587728284240",
       "context": {
         "person_name": "<? input.text ?>"
       },
       "conditions": "$next",
-      "dialog_node": "node_7_1597907871228"
+      "dialog_node": "node_5_1587728342859"
     },
     {
       "type": "standard",
-      "title": "Understand the Intent",
+      "title": "Status Check",
       "output": {
         "generic": [
           {
             "values": [
               {
-                "text": "Okay. Select from the below list or choose your own product  and quantity together as comma separated values"
+                "text": "Let us know when you are ready to place the order. Goodbye."
               }
             ],
             "response_type": "text",
             "selection_policy": "sequential"
-          },
-          {
-            "title": "",
-            "options": [
-              {
-                "label": "Rice",
-                "value": {
-                  "input": {
-                    "text": "2 Kgs"
-                  }
-                }
-              },
-              {
-                "label": "Flour",
-                "value": {
-                  "input": {
-                    "text": "1 Kg"
-                  }
-                }
-              },
-              {
-                "label": "Dettol",
-                "value": {
-                  "input": {
-                    "text": "1 bottle"
-                  }
-                }
-              }
-            ],
-            "response_type": "option"
           }
         ]
       },
-      "parent": "node_9_1587454332998",
+      "parent": "Welcome",
+      "conditions": "#stop",
+      "dialog_node": "node_6_1587455561988",
+      "previous_sibling": "node_9_1587454332998"
+    },
+    {
+      "type": "standard",
+      "title": "Covid-19",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Please visit this site at <a href=\"https://www.who.int/emergencies/diseases/novel-coronavirus-2019\" target=\"blank\">Covid-19 Updates</a>"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Welcome",
+      "conditions": "#covid",
+      "dialog_node": "node_9_1587454332998",
+      "previous_sibling": "node_2_1587444787744"
+    },
+    {
+      "type": "standard",
+      "title": "Understand the intent",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Okay. Enter the product name and quantity together as comma-separated values."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Welcome",
+      "context": {},
       "conditions": "#order && $next",
-      "dialog_node": "node_6_1597907487753"
+      "dialog_node": "node_2_1587444787744"
+    },
+    {
+      "type": "standard",
+      "title": "Contact Number",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Thanks $person_name, your contact number is $contact_number. Your order has been placed with $order_details and will be delivered to $address."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1597907871228",
+      "context": {
+        "contact_number": "<? input.text ?>"
+      },
+      "conditions": "$next",
+      "dialog_node": "node_6_1597907931967"
     },
     {
       "type": "standard",
@@ -432,120 +465,26 @@
     },
     {
       "type": "standard",
-      "title": "Covid-19",
+      "title": "Order Details",
       "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "Please visit this site at <a href=\"https://www.who.int/emergencies/diseases/novel-coronavirus-2019\" target=\"blank\">Covid-19 Updates</a>"
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
+        "text": {
+          "values": [
+            "What is your address?"
+          ],
+          "selection_policy": "sequential"
+        }
       },
-      "parent": "Welcome",
-      "conditions": "#covid",
-      "dialog_node": "node_9_1587454332998",
-      "previous_sibling": "node_2_1587444787744"
-    },
-    {
-      "type": "standard",
-      "title": "Status Check",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "Let us know when you are ready to place the order. Goodbye."
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "Welcome",
-      "conditions": "#stop",
-      "dialog_node": "node_6_1587455561988",
-      "previous_sibling": "node_9_1587454332998"
-    },
-    {
-      "type": "standard",
-      "title": "Understand the intent",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "Okay. Select from the below list or choose your own product  and quantity together as comma separated values"
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          },
-          {
-            "title": "",
-            "options": [
-              {
-                "label": "Rice",
-                "value": {
-                  "input": {
-                    "text": "2 kgs"
-                  }
-                }
-              },
-              {
-                "label": "Flour",
-                "value": {
-                  "input": {
-                    "text": "1 kg"
-                  }
-                }
-              },
-              {
-                "label": "Dettol",
-                "value": {
-                  "input": {
-                    "text": "1 bottle"
-                  }
-                }
-              }
-            ],
-            "description": "",
-            "response_type": "option"
-          }
-        ]
-      },
-      "parent": "Welcome",
-      "context": {},
-      "conditions": "#order && $next",
-      "dialog_node": "node_2_1587444787744"
-    },
-    {
-      "type": "standard",
-      "title": "Customer Name",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "What is your contact number?"
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_2_1587728284240",
+      "parent": "node_2_1587444787744",
       "context": {
-        "person_name": "<? input.text ?>"
+        "order_details": "<? input.text ?>"
+      },
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
       },
       "conditions": "$next",
-      "dialog_node": "node_5_1587728342859"
+      "dialog_node": "node_7_1587445412065"
     },
     {
       "type": "standard",
@@ -599,7 +538,7 @@
                 "label": "Place an order",
                 "value": {
                   "input": {
-                    "text": ""
+                    "text": "Place an order"
                   }
                 }
               },
@@ -607,7 +546,7 @@
                 "label": "Know more about Covid",
                 "value": {
                   "input": {
-                    "text": ""
+                    "text": "Know more about Covid"
                   }
                 }
               }
