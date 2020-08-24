@@ -109,6 +109,17 @@ We can optionally click on `Try it` on the top right hand side to launch a GUI w
 
 ![](doc/source/images/db2credentials.gif)
 
+- Once you have copied the credentials, we'll create a table in Db2. Click on **Manage** and click on **Open Console** IBM Db2 Console will open in a new browser tab.
+
+- In the Console click on the **Schema** (which is your `username` from the credentials copied earlier) and select **Create Table**. Name the table as `ORDERS` and add 5 columns namely:
+    - ID (INT)
+    - NAME (VARCHAR)
+    - PHONE (VARCHAR)
+    - ORDERS (VARCHAR)
+    - ADDRESS (VARCHAR)
+
+![create-table](doc/source/images/createtable1.png)
+
 ### 7. Add the Credentials to the Application
 
 - Open the `watson-assistant-credentials.json` file and add the Watson Assistant `apikey`, `url` and the `assistant-id` from step #2 in the placeholders and finally save the file.
@@ -211,7 +222,7 @@ $ docker run -p 8080:8080 covid-19-helpdesk
 
 ![](doc/source/images/ordertemplate.png)
 
-- The orders will be processed one after the other please wait for it to complete.
+- The orders will be processed on clicking the `Submit` button.
 
 ![](doc/source/images/processorder.gif)
 
