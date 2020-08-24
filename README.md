@@ -203,9 +203,9 @@ $ docker run -p 8080:8080 covid-19-helpdesk
 
 ![](doc/source/images/step1.png)
 
-- A Template with available products will be displayed as shown. 
+- A Template will be available for selecting some of the products quickly as shown or If you have a different set of products then click on `cancel` and enter your own products and quantities together as comma separated values. 
     
-    1. Select and 3 Items of choice.
+    1. Select any products of choice from the quick select menu. 
     2. Input the quantity.
     3. Click on `Confirm`.
 
