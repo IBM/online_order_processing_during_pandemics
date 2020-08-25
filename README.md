@@ -6,7 +6,7 @@ Nowadays, its a bit risky to visit a supermarket for grocery shopping given the 
 
 In this code pattern, we build an AI-powered backend system that can take the daily essentials orders through online mode. The system processes the incoming text request by converting it to formatted orders list. An effective way of processing the information quickly.
 
-This AI powered backend system can be later connected to the inventory database for optimising supply chain management. This solution will be applicable into various domains such as ordering medicines and ordering daily essentials (groceries), etc.
+This AI powered backend system can be later connected to the inventory database for optimising supply chain management. This solution will be applicable for various domains such as healthcare, retail for ordering medicines and daily essentials (groceries), etc.
 
 When the reader has completed this Code Pattern, they will understand how to:
 
