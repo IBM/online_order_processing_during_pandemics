@@ -229,7 +229,7 @@ $ docker run -p 8080:8080 covid-19-helpdesk
 
 - You have successfully placed an order at this point, your order will be saved to Db2 database.
 
->- Aditionally you can click on `Know more about Covid` as shown.
+>- Aditionally you can click on `Know more about Covid` as shown and still place the order in the next step. 
 
 >![](doc/source/images/knowmore.png)
 
