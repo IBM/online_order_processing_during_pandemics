@@ -2,7 +2,7 @@
 
 How do we stop panic amongst people of hoarding essentials during lockdown? How do we enable people to procure essentials through digital mode? 
 
-Nowadays, its a bit risky to visit a supermarket for grocery shopping given the social distancing factor. Our solution offers you online grocery shopping at your fingertips to manage your needs effortlessly. 
+Nowadays, its a bit risky to visit a supermarket for grocery shopping given the social distancing factor. **Our solution offers you online grocery shopping at your fingertips to manage your needs effortlessly.**
 
 In this code pattern, we build an AI-powered backend system that can take the daily essentials orders through online mode. The system processes the incoming text request by converting it to formatted orders list. An effective way of processing the information quickly.
 
@@ -97,7 +97,7 @@ After the skill is imported, we should click on the skill to review the `Intents
 
 We can optionally click on `Try it` on the top right hand side to launch a GUI where we can fire the questions and evaluate the response accordingly. This step will be helpful to make changes to Intents, Entities and/or Dialog flows by making the conversation interactive & meaningful. 
 
-`We can update the Intents, Entities & Dialog flows in three different ways. One is to do it manually, second is to import a text file with the details and the third is to make changes dynamically using a code. Navigate to the `code` folder to access the Python script for making dynamic changes to Intents & Entities. After we run the script using Jupyter Notebook in Watson Studio, it will take couple of minutes for Watson Assistant to train on new data. The training time is dependent on the amount of new data which is being exposed to Watson Assistant.`
+`We can update the Intents, Entities & Dialog flows in three different ways. One is to do it manually, second is to import a text file with the details and the third is to make changes dynamically using a code. Navigate to the **`code`** folder to access the Python script for making dynamic changes to Intents & Entities. After we run the script using Jupyter Notebook in Watson Studio, it will take couple of minutes for Watson Assistant to train on new data. The training time is dependent on the amount of new data which is being exposed to Watson Assistant.`
 
 ### 6. Setup IBM Db2
 
@@ -199,7 +199,7 @@ $ docker run -p 8080:8080 covid-19-helpdesk
 
 - Visit the app route `order-processing-pandemic.xx-xx.mybluemix.net` to launch the chatbot.
 
-- Click on `Place an order` to place online order with the watson assistant chatbot as shown.
+- Click on `Place an order` to place online order with the watson assistant chatbot as shown. `This app can be used to place orders for essentials like grocery, medicines etc.`
 
 ![](doc/source/images/step1.png)
 
