@@ -1,35 +1,8 @@
 {
   "intents": [
     {
-      "intent": "order",
-      "examples": [
-        {
-          "text": "order"
-        },
-        {
-          "text": "I would like to place the order"
-        },
-        {
-          "text": "Place the order"
-        },
-        {
-          "text": "I want to place the order"
-        },
-        {
-          "text": "I need to place an order"
-        }
-      ],
-      "description": ""
-    },
-    {
       "intent": "covid",
       "examples": [
-        {
-          "text": "Latest news on Covid"
-        },
-        {
-          "text": "I want to know more about Covid"
-        },
         {
           "text": "Covid-19"
         },
@@ -38,13 +11,46 @@
         },
         {
           "text": "Corona Virus"
+        },
+        {
+          "text": "Latest news on Covid"
+        },
+        {
+          "text": "I want to know more about Covid"
         }
       ],
       "description": "know more about Covid-19"
     },
     {
+      "intent": "order",
+      "examples": [
+        {
+          "text": "order"
+        },
+        {
+          "text": "I want to place the order"
+        },
+        {
+          "text": "I need to place an order"
+        },
+        {
+          "text": "I would like to place the order"
+        },
+        {
+          "text": "Place the order"
+        }
+      ],
+      "description": ""
+    },
+    {
       "intent": "stop",
       "examples": [
+        {
+          "text": "not ready"
+        },
+        {
+          "text": "thats it"
+        },
         {
           "text": "That is it"
         },
@@ -71,18 +77,48 @@
         },
         {
           "text": "I will get back later"
-        },
-        {
-          "text": "not ready"
-        },
-        {
-          "text": "thats it"
         }
       ],
       "description": ""
     }
   ],
   "entities": [
+    {
+      "entity": "stop",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "nothing",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "stop",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "nothing at this point",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "i don't need anything",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "not needed now",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "no",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
     {
       "entity": "covid",
       "values": [
@@ -123,42 +159,6 @@
         }
       ],
       "fuzzy_match": true
-    },
-    {
-      "entity": "stop",
-      "values": [
-        {
-          "type": "synonyms",
-          "value": "not needed now",
-          "synonyms": []
-        },
-        {
-          "type": "synonyms",
-          "value": "nothing",
-          "synonyms": []
-        },
-        {
-          "type": "synonyms",
-          "value": "no",
-          "synonyms": []
-        },
-        {
-          "type": "synonyms",
-          "value": "stop",
-          "synonyms": []
-        },
-        {
-          "type": "synonyms",
-          "value": "nothing at this point",
-          "synonyms": []
-        },
-        {
-          "type": "synonyms",
-          "value": "i don't need anything",
-          "synonyms": []
-        }
-      ],
-      "fuzzy_match": true
     }
   ],
   "metadata": {
@@ -193,6 +193,52 @@
     },
     {
       "type": "standard",
+      "title": "Address",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "What is your name?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1597907687414",
+      "context": {
+        "address": "<? input.text ?>"
+      },
+      "conditions": "$next",
+      "dialog_node": "node_7_1597907804178"
+    },
+    {
+      "type": "standard",
+      "title": "Order Details",
+      "output": {
+        "text": {
+          "values": [
+            "What is your address?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_2_1587444787744",
+      "context": {
+        "order_details": "<? input.text ?>"
+      },
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "$next",
+      "dialog_node": "node_7_1587445412065"
+    },
+    {
+      "type": "standard",
       "title": "Understand the Intent",
       "output": {
         "generic": [
@@ -210,6 +256,29 @@
       "parent": "node_9_1587454332998",
       "conditions": "#order && $next",
       "dialog_node": "node_6_1597907487753"
+    },
+    {
+      "type": "standard",
+      "title": "Order Details",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "What is your address?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1597907487753",
+      "context": {
+        "order_details": "<? input.text ?>"
+      },
+      "conditions": "$next",
+      "dialog_node": "node_7_1597907687414"
     },
     {
       "type": "response_condition",
@@ -238,13 +307,13 @@
     },
     {
       "type": "standard",
-      "title": "Address",
+      "title": "Covid-19",
       "output": {
         "generic": [
           {
             "values": [
               {
-                "text": "What is your name?"
+                "text": "Please visit this site at <a href=\"https://www.who.int/emergencies/diseases/novel-coronavirus-2019\" target=\"blank\">Covid-19 Updates</a>"
               }
             ],
             "response_type": "text",
@@ -252,107 +321,10 @@
           }
         ]
       },
-      "parent": "node_7_1597907687414",
-      "context": {
-        "address": "<? input.text ?>"
-      },
-      "conditions": "$next",
-      "dialog_node": "node_7_1597907804178"
-    },
-    {
-      "type": "event_handler",
-      "parent": "node_7_1587445412065",
-      "event_name": "focus",
-      "dialog_node": "handler_1_1587448261253",
-      "previous_sibling": "response_7_1587471238140"
-    },
-    {
-      "type": "response_condition",
-      "output": {
-        "text": {
-          "values": [
-            "next product?"
-          ],
-          "selection_policy": "sequential"
-        }
-      },
-      "parent": "node_7_1587445412065",
-      "context": {
-        "order_details_1": "<? input.text ?>"
-      },
-      "disabled": true,
-      "conditions": "$next",
-      "dialog_node": "response_7_1587471238140",
-      "previous_sibling": "node_2_1587728284240"
-    },
-    {
-      "type": "standard",
-      "title": "Address",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "What is your name?"
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_7_1587445412065",
-      "context": {
-        "address": "<? input.text ?>"
-      },
-      "conditions": "$next",
-      "dialog_node": "node_2_1587728284240"
-    },
-    {
-      "type": "standard",
-      "title": "Order Details",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "What is your address?"
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_6_1597907487753",
-      "context": {
-        "order_details": "<? input.text ?>"
-      },
-      "conditions": "$next",
-      "dialog_node": "node_7_1597907687414"
-    },
-    {
-      "type": "standard",
-      "title": "Customer Name",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "What is your contact number?"
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_2_1587728284240",
-      "context": {
-        "person_name": "<? input.text ?>"
-      },
-      "conditions": "$next",
-      "dialog_node": "node_5_1587728342859"
+      "parent": "Welcome",
+      "conditions": "#covid",
+      "dialog_node": "node_9_1587454332998",
+      "previous_sibling": "node_2_1587444787744"
     },
     {
       "type": "standard",
@@ -374,27 +346,6 @@
       "conditions": "#stop",
       "dialog_node": "node_6_1587455561988",
       "previous_sibling": "node_9_1587454332998"
-    },
-    {
-      "type": "standard",
-      "title": "Covid-19",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "Please visit this site at <a href=\"https://www.who.int/emergencies/diseases/novel-coronavirus-2019\" target=\"blank\">Covid-19 Updates</a>"
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "Welcome",
-      "conditions": "#covid",
-      "dialog_node": "node_9_1587454332998",
-      "previous_sibling": "node_2_1587444787744"
     },
     {
       "type": "standard",
@@ -465,26 +416,75 @@
     },
     {
       "type": "standard",
-      "title": "Order Details",
+      "title": "Customer Name",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "What is your contact number?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1587728284240",
+      "context": {
+        "person_name": "<? input.text ?>"
+      },
+      "conditions": "$next",
+      "dialog_node": "node_5_1587728342859"
+    },
+    {
+      "type": "event_handler",
+      "parent": "node_7_1587445412065",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1587448261253",
+      "previous_sibling": "response_7_1587471238140"
+    },
+    {
+      "type": "response_condition",
       "output": {
         "text": {
           "values": [
-            "What is your address?"
+            "next product?"
           ],
           "selection_policy": "sequential"
         }
       },
-      "parent": "node_2_1587444787744",
+      "parent": "node_7_1587445412065",
       "context": {
-        "order_details": "<? input.text ?>"
+        "order_details_1": "<? input.text ?>"
       },
-      "metadata": {
-        "_customization": {
-          "mcr": false
-        }
+      "disabled": true,
+      "conditions": "$next",
+      "dialog_node": "response_7_1587471238140",
+      "previous_sibling": "node_2_1587728284240"
+    },
+    {
+      "type": "standard",
+      "title": "Address",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "What is your name?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1587445412065",
+      "context": {
+        "address": "<? input.text ?>"
       },
       "conditions": "$next",
-      "dialog_node": "node_7_1587445412065"
+      "dialog_node": "node_2_1587728284240"
     },
     {
       "type": "standard",
