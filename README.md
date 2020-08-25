@@ -2,7 +2,7 @@
 
 How do we stop panic amongst people of hoarding essentials during lockdown? How do we enable people to procure essentials through digital mode? 
 
-Nowadays, its a bit risky to visit a supermarket for grocery shopping given the social distancing factor. **Our solution offers you online grocery shopping at your fingertips to manage your needs effortlessly.**
+Nowadays, its a bit risky to visit a supermarket for grocery shopping given the social distancing factor. **Our solution offers you online shopping of essentials at your fingertips to manage your needs effortlessly.**
 
 In this code pattern, we build an AI-powered backend system that can take the daily essentials orders through online mode. The system processes the incoming text request by converting it to formatted orders list. An effective way of processing the information quickly.
 
