@@ -97,7 +97,7 @@ After the skill is imported, we should click on the skill to review the `Intents
 
 We can optionally click on `Try it` on the top right hand side to launch a GUI where we can fire the questions and evaluate the response accordingly. This step will be helpful to make changes to Intents, Entities and/or Dialog flows by making the conversation interactive & meaningful. 
 
-`We can update the Intents, Entities & Dialog flows in three different ways. One is to do it manually, second is to import a text file with the details and the third is to make changes dynamically using a code. Navigate to the **`code`** folder to access the Python script for making dynamic changes to Intents & Entities. After we run the script using Jupyter Notebook in Watson Studio, it will take couple of minutes for Watson Assistant to train on new data. The training time is dependent on the amount of new data which is being exposed to Watson Assistant.`
+We can update the Intents, Entities & Dialog flows in three different ways. One is to do it manually, second is to import a text file with the details and the third is to make changes dynamically using a code. Navigate to the `code` folder to access the Python script for making dynamic changes to Intents & Entities. After we run the script using Jupyter Notebook in Watson Studio, it will take couple of minutes for Watson Assistant to train on new data. The training time is dependent on the amount of new data which is being exposed to Watson Assistant.
 
 ### 6. Setup IBM Db2
 
