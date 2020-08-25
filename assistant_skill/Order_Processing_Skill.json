@@ -1,43 +1,22 @@
 {
   "intents": [
     {
-      "intent": "order",
-      "examples": [
-        {
-          "text": "order"
-        },
-        {
-          "text": "I would like to place the order"
-        },
-        {
-          "text": "Place the order"
-        },
-        {
-          "text": "I want to place the order"
-        },
-        {
-          "text": "I need to place an order"
-        }
-      ],
-      "description": ""
-    },
-    {
       "intent": "covid",
       "examples": [
         {
           "text": "Latest news on Covid"
         },
         {
-          "text": "I want to know more about Covid"
-        },
-        {
-          "text": "Covid-19"
+          "text": "Corona Virus"
         },
         {
           "text": "What is Covid"
         },
         {
-          "text": "Corona Virus"
+          "text": "Covid-19"
+        },
+        {
+          "text": "I want to know more about Covid"
         }
       ],
       "description": "know more about Covid-19"
@@ -46,19 +25,7 @@
       "intent": "stop",
       "examples": [
         {
-          "text": "That is it"
-        },
-        {
-          "text": "nothing"
-        },
-        {
-          "text": "That's it"
-        },
-        {
-          "text": "I am done"
-        },
-        {
-          "text": "Nothing else"
+          "text": "thats it"
         },
         {
           "text": "This is all"
@@ -76,27 +43,46 @@
           "text": "not ready"
         },
         {
-          "text": "thats it"
+          "text": "That is it"
+        },
+        {
+          "text": "nothing"
+        },
+        {
+          "text": "That's it"
+        },
+        {
+          "text": "I am done"
+        },
+        {
+          "text": "Nothing else"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "order",
+      "examples": [
+        {
+          "text": "I need to place an order"
+        },
+        {
+          "text": "I want to place the order"
+        },
+        {
+          "text": "Place the order"
+        },
+        {
+          "text": "I would like to place the order"
+        },
+        {
+          "text": "order"
         }
       ],
       "description": ""
     }
   ],
   "entities": [
-    {
-      "entity": "covid",
-      "values": [
-        {
-          "type": "synonyms",
-          "value": "Covid-19",
-          "synonyms": [
-            "Latest news on Covid-19",
-            "Covid-19"
-          ]
-        }
-      ],
-      "fuzzy_match": true
-    },
     {
       "entity": "products",
       "values": [
@@ -125,37 +111,15 @@
       "fuzzy_match": true
     },
     {
-      "entity": "stop",
+      "entity": "covid",
       "values": [
         {
           "type": "synonyms",
-          "value": "not needed now",
-          "synonyms": []
-        },
-        {
-          "type": "synonyms",
-          "value": "nothing",
-          "synonyms": []
-        },
-        {
-          "type": "synonyms",
-          "value": "no",
-          "synonyms": []
-        },
-        {
-          "type": "synonyms",
-          "value": "stop",
-          "synonyms": []
-        },
-        {
-          "type": "synonyms",
-          "value": "nothing at this point",
-          "synonyms": []
-        },
-        {
-          "type": "synonyms",
-          "value": "i don't need anything",
-          "synonyms": []
+          "value": "Covid-19",
+          "synonyms": [
+            "Latest news on Covid-19",
+            "Covid-19"
+          ]
         }
       ],
       "fuzzy_match": true
@@ -170,13 +134,13 @@
   "dialog_nodes": [
     {
       "type": "standard",
-      "title": "Customer Name",
+      "title": "Order Details Contd",
       "output": {
         "generic": [
           {
             "values": [
               {
-                "text": "What is your contact number?"
+                "text": "next product?"
               }
             ],
             "response_type": "text",
@@ -184,22 +148,71 @@
           }
         ]
       },
-      "parent": "node_7_1597907804178",
+      "parent": "node_7_1587445412065",
       "context": {
-        "person_name": "<? input.text ?>"
+        "order_details_2": "<? input.text ?>"
       },
       "conditions": "$next",
-      "dialog_node": "node_7_1597907871228"
+      "dialog_node": "node_6_1587445533598",
+      "previous_sibling": "handler_1_1587448261253"
+    },
+    {
+      "type": "event_handler",
+      "parent": "node_7_1587445412065",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1587448261253",
+      "previous_sibling": "response_7_1587471238140"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "next product?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_7_1587445412065",
+      "context": {
+        "order_details_1": "<? input.text ?>"
+      },
+      "disabled": true,
+      "conditions": "$next",
+      "dialog_node": "response_7_1587471238140"
     },
     {
       "type": "standard",
-      "title": "Understand the Intent",
+      "title": "Order Details",
+      "output": {
+        "text": {
+          "values": [
+            "next product?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_2_1587444787744",
+      "context": {
+        "order_details_1": "<? input.text ?>"
+      },
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "$next",
+      "dialog_node": "node_7_1587445412065"
+    },
+    {
+      "type": "standard",
+      "title": "Consolidated Response",
       "output": {
         "generic": [
           {
             "values": [
               {
-                "text": "Okay. Enter the product name and quantity together as comma-separated values."
+                "text": "Thanks, $person_name. Your contact number is $contact_number with order details as $order_details_1, $order_details_2, $order_details_3 & will be delivered to $address."
               }
             ],
             "response_type": "text",
@@ -207,9 +220,35 @@
           }
         ]
       },
-      "parent": "node_9_1587454332998",
-      "conditions": "#order && $next",
-      "dialog_node": "node_6_1597907487753"
+      "parent": "node_2_1587448561883",
+      "context": {
+        "contact_number": "<? input.text ?>"
+      },
+      "conditions": "$next",
+      "dialog_node": "node_1_1587448635194"
+    },
+    {
+      "type": "standard",
+      "title": "Order Details Contd",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "What is your address?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1587445533598",
+      "context": {
+        "order_details_3": "<? input.text ?>"
+      },
+      "conditions": "$next",
+      "dialog_node": "node_9_1587445574248"
     },
     {
       "type": "response_condition",
@@ -252,48 +291,22 @@
           }
         ]
       },
-      "parent": "node_7_1597907687414",
+      "parent": "node_9_1587445574248",
       "context": {
         "address": "<? input.text ?>"
       },
       "conditions": "$next",
-      "dialog_node": "node_7_1597907804178"
-    },
-    {
-      "type": "event_handler",
-      "parent": "node_7_1587445412065",
-      "event_name": "focus",
-      "dialog_node": "handler_1_1587448261253",
-      "previous_sibling": "response_7_1587471238140"
-    },
-    {
-      "type": "response_condition",
-      "output": {
-        "text": {
-          "values": [
-            "next product?"
-          ],
-          "selection_policy": "sequential"
-        }
-      },
-      "parent": "node_7_1587445412065",
-      "context": {
-        "order_details_1": "<? input.text ?>"
-      },
-      "disabled": true,
-      "conditions": "$next",
-      "dialog_node": "response_7_1587471238140",
-      "previous_sibling": "node_2_1587728284240"
+      "dialog_node": "node_3_1587447116227"
     },
     {
       "type": "standard",
-      "title": "Address",
+      "title": "Anything Else",
       "output": {
         "generic": [
           {
             "values": [
               {
-                "text": "What is your name?"
+                "text": "Have a good day!"
               }
             ],
             "response_type": "text",
@@ -301,58 +314,10 @@
           }
         ]
       },
-      "parent": "node_7_1587445412065",
-      "context": {
-        "address": "<? input.text ?>"
-      },
+      "parent": "node_1_1587448635194",
       "conditions": "$next",
-      "dialog_node": "node_2_1587728284240"
-    },
-    {
-      "type": "standard",
-      "title": "Order Details",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "What is your address?"
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_6_1597907487753",
-      "context": {
-        "order_details": "<? input.text ?>"
-      },
-      "conditions": "$next",
-      "dialog_node": "node_7_1597907687414"
-    },
-    {
-      "type": "standard",
-      "title": "Customer Name",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "What is your contact number?"
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_2_1587728284240",
-      "context": {
-        "person_name": "<? input.text ?>"
-      },
-      "conditions": "$next",
-      "dialog_node": "node_5_1587728342859"
+      "user_label": "End note",
+      "dialog_node": "node_8_1587453683803"
     },
     {
       "type": "standard",
@@ -404,11 +369,42 @@
           {
             "values": [
               {
-                "text": "Okay. Enter the product name and quantity together as comma-separated values."
+                "text": "Okay. Select from the below list or choose your own product and quantity together"
               }
             ],
             "response_type": "text",
             "selection_policy": "sequential"
+          },
+          {
+            "title": "",
+            "options": [
+              {
+                "label": "Rice",
+                "value": {
+                  "input": {
+                    "text": "2 kgs"
+                  }
+                }
+              },
+              {
+                "label": "Flour",
+                "value": {
+                  "input": {
+                    "text": "1 kg"
+                  }
+                }
+              },
+              {
+                "label": "Dettol",
+                "value": {
+                  "input": {
+                    "text": "1 bottle"
+                  }
+                }
+              }
+            ],
+            "description": "",
+            "response_type": "option"
           }
         ]
       },
@@ -425,7 +421,7 @@
           {
             "values": [
               {
-                "text": "Thanks $person_name, your contact number is $contact_number. Your order has been placed with $order_details and will be delivered to $address."
+                "text": "What is your contact number?"
               }
             ],
             "response_type": "text",
@@ -433,58 +429,12 @@
           }
         ]
       },
-      "parent": "node_7_1597907871228",
+      "parent": "node_3_1587447116227",
       "context": {
-        "contact_number": "<? input.text ?>"
+        "person_name": "<? input.text ?>"
       },
       "conditions": "$next",
-      "dialog_node": "node_6_1597907931967"
-    },
-    {
-      "type": "standard",
-      "title": "Contact Number",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "Thanks $person_name, your contact number is $contact_number. Your order has been placed with $order_details and will be delivered to $address."
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_5_1587728342859",
-      "context": {
-        "contact_number": "<? input.text ?>"
-      },
-      "conditions": "$next",
-      "dialog_node": "node_10_1587728408039"
-    },
-    {
-      "type": "standard",
-      "title": "Order Details",
-      "output": {
-        "text": {
-          "values": [
-            "What is your address?"
-          ],
-          "selection_policy": "sequential"
-        }
-      },
-      "parent": "node_2_1587444787744",
-      "context": {
-        "order_details": "<? input.text ?>"
-      },
-      "metadata": {
-        "_customization": {
-          "mcr": false
-        }
-      },
-      "conditions": "$next",
-      "dialog_node": "node_7_1587445412065"
+      "dialog_node": "node_2_1587448561883"
     },
     {
       "type": "standard",
@@ -538,7 +488,7 @@
                 "label": "Place an order",
                 "value": {
                   "input": {
-                    "text": "Place an order"
+                    "text": ""
                   }
                 }
               },
@@ -546,7 +496,7 @@
                 "label": "Know more about Covid",
                 "value": {
                   "input": {
-                    "text": "Know more about Covid"
+                    "text": ""
                   }
                 }
               }
