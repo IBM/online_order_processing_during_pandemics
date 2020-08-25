@@ -199,7 +199,7 @@ $ docker run -p 8080:8080 covid-19-helpdesk
 
 - Visit the app route `order-processing-pandemic.xx-xx.mybluemix.net` to launch the chatbot.
 
-- Click on `Place an order` to place online order with the watson assistant chatbot as shown. `This app can be used to place orders for essentials like grocery, medicines etc.`
+- Click on `Place an order` to place online order with the watson assistant chatbot as shown. `This app can be used to place orders for essentials like grocery, medicines etc by providing appropriate response to the questions.`
 
 ![](doc/source/images/step1.png)
 
