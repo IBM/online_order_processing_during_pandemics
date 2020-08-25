@@ -86,14 +86,12 @@ function addToDB() {
     msgas = chatBody.find('div.ChatItem--customer').find('div.ChatItem-chatContent').find('div.ChatItem-chatText').last().html();
 
     responseList = msgas.split(',');
-    respoName = responseList[1].split('.')[0];
+    respoName = responseList[1].split('.')[0].trim();
     respoContact = responseList[1].split(' with')[0].split('is ')[1];
-    respOrder1 = responseList[1].split('as ')[1];
-    respOrder2 = responseList[2];
-    respOrder3 = responseList[3].split(' &')[0];
     respAddress = msgas.split('to ')[1].split('.')[0];
+    respOrder1 = msgas.split('as ')[1].split(' &amp;')[0]
 
-    addDatabaseContents(respoName, respoContact, respOrder1, respOrder2, respOrder3, respAddress);
+    addDatabaseContents(respoName, respoContact, respOrder1, respAddress);
 }
 
 async function watson() {
@@ -125,10 +123,11 @@ async function watson() {
                         '<li>' + element.label + '</li>'
                     );
                 });
+                bringUpForm.click();
                 itr = itr + 1;
 
                 if (itr == 1) {
-                    bringUpForm.click();
+
                 }
 
                 if (flag == true)
@@ -143,10 +142,14 @@ async function watson() {
                 $('.ChatWindow').append(
                     '<div class="ChatItem ChatItem--customer"> <div class="ChatItem-meta"> <div class="ChatItem-avatar"> <img class="ChatItem-avatarImage" src="static/watson.png"> </div> </div> <div class="ChatItem-chatContent"> <div class="ChatItem-chatText">' + data.message + '</div> <div class="ChatItem-timeStamp"><strong>Watson Chatbot</strong></div> </div> </div>');
 
+                if (data.message == "Okay. Enter the product and quantity together as comma-separated values.") {
+                    bringUpForm.click();
+                }
+
                 itr = itr + 1;
 
                 if (itr == 1) {
-                    bringUpForm.click();
+
                 }
 
                 if (flag == true)
@@ -237,12 +240,12 @@ function automate(nam, pho, ord1, ord2, ord3, add) {
     run();
 }
 
-async function addDatabaseContents(respoName, respoContact, respOrder1, respOrder2, respOrder3, respAddress) {
+async function addDatabaseContents(respoName, respoContact, respOrder1, respAddress) {
 
     let orderDetails = {
         name: respoName,
         phone: respoContact,
-        orders: respOrder1 + ' ' + respOrder2 + ' ' + respOrder3,
+        orders: respOrder1,
         address: respAddress,
     };
 
@@ -355,44 +358,6 @@ $('#modalAction').on('click', function() {
         // if (selectedFromTemplate.length == 2) {
         //     optionsSelected(selectedFromTemplate[0]);
         //     setTimeout(() => optionsSelected(selectedFromTemplate[1]), 2000);
-        // } else if (selectedFromTemplate.length > 2) {
-        //     optionsSelected(selectedFromTemplate[0]);
-        //     setTimeout(() => optionsSelected(selectedFromTemplate[1]), 2000);
-        //     setTimeout(() => optionsSelected(selectedFromTemplate[2]), 4000);
-        // } else if (selectedFromTemplate.length == 1) {
-        //     optionsSelected(selectedFromTemplate[0]);
-        // } else {}
-
-    }, 1000);
-});
-
-$('#iosAcceptButton').on('click', function() {
-    setTimeout(function() {
-
-        $.each($("input[name='template']:checked"), function() {
-            selectedFromTemplate.push($(this).val());
-        });
-
-        for (i = 0; i < selectedFromTemplate.length; i++) {
-            product = selectedFromTemplate[i].toLowerCase();
-            quantity = document.getElementById(`${product}-qty`).value;
-            if (product == 'dettol') {
-                if (quantity > 1)
-                    selectedFromTemplate[i] = product + ' ' + quantity + ' bottles';
-                else
-                    selectedFromTemplate[i] = product + ' ' + quantity + ' bottle';
-            } else {
-                if (quantity > 1)
-                    selectedFromTemplate[i] = product + ' ' + quantity + ' kgs';
-                else
-                    selectedFromTemplate[i] = product + ' ' + quantity + ' kg';
-            }
-        }
-
-        optionsSelected(selectedFromTemplate);
-        // if (selectedFromTemplate.length == 2) {
-        //     optionsSelected(selectedFromTemplate[0]);
-        //     setTimeout(() => optionsSelected(selectedFromTemplate), 2000);
         // } else if (selectedFromTemplate.length > 2) {
         //     optionsSelected(selectedFromTemplate[0]);
         //     setTimeout(() => optionsSelected(selectedFromTemplate[1]), 2000);

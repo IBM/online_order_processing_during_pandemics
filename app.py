@@ -39,8 +39,8 @@ dsn = (
     "PWD={4};").format(dsn_database, dsn_hostname, dsn_port, dsn_uid, dsn_pwd)
 try:
     conn = ibm_db.connect(dsn, "", "")
-except Exception as e:
-    print("Exception: "+e)
+except:
+    pass
 
 
 with open('watson-assistant-credentials.json', 'r') as credentialsFile:
@@ -154,9 +154,7 @@ def addDatabaseContentsJson():
         add = a+data.get('address')+a
         insert = 'INSERT INTO {0}.ORDERS VALUES(%d, %s, %s, %s, %s)'.format(dsn_uid) % (
             ids, n, p, o, add)
-        
-        print("Insert Statement: "+insert)
-        ibm_db.exec_immediate(conn, insert)
+    
         try:
             ibm_db.exec_immediate(conn, insert)
             return {'flag': 'success'}
