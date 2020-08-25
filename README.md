@@ -211,7 +211,7 @@ $ docker run -p 8080:8080 covid-19-helpdesk
 
 ![](doc/source/images/ordertemplate.png)
 
-- The orders will be processed one after the other please wait for it to complete.
+- The order details will be captured accordingly as per the response from the user.
 
 ![](doc/source/images/processorder.gif)
 
