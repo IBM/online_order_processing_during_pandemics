@@ -16,7 +16,7 @@ When the reader has completed this Code Pattern, they will understand how to:
 * Deploy the solution on IBM Cloud.
 * Enable processing orders & inventory management on real-time basis.
 
-![](doc/source/images/architecture.png)
+![](doc/source/images/Architecture.png)
 
 
 ## Flow
@@ -108,17 +108,6 @@ We can optionally click on `Try it` on the top right hand side to launch a GUI w
 - Click on **Service credentials** and click on **New Credentials** to generate credentials and click on save credentials as shown.
 
 ![](doc/source/images/db2credentials.gif)
-
-- Once you have copied the credentials, we'll create a table in Db2. Click on **Manage** and click on **Open Console** IBM Db2 Console will open in a new browser tab.
-
-- In the Console click on the **Schema** (which is your `username` from the credentials copied earlier) and select **Create Table**. Name the table as `ORDERS` and add 5 columns namely:
-    - ID (INT)
-    - NAME (VARCHAR)
-    - PHONE (VARCHAR)
-    - ORDERS (VARCHAR)
-    - ADDRESS (VARCHAR)
-
-![create-table](doc/source/images/createtable1.png)
 
 ### 7. Add the Credentials to the Application
 
@@ -222,7 +211,7 @@ $ docker run -p 8080:8080 covid-19-helpdesk
 
 ![](doc/source/images/ordertemplate.png)
 
-- The orders will be processed on clicking the `Submit` button.
+- The orders will be processed one after the other please wait for it to complete.
 
 ![](doc/source/images/processorder.gif)
 

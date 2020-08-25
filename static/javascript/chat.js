@@ -3,13 +3,6 @@ var itr = 0;
 var flag = false;
 var exec = 0;
 
-var phone = "1112223333";
-var address = "104, ..., ...";
-var nameM = "Manoj";
-var order1 = "black gram 2 kgs";
-var order3 = "Dettol 2 bottles";
-var order2 = "flour 1 kgs";
-
 var lat;
 var lon;
 
@@ -48,39 +41,6 @@ $(document).ready(function() {
     });
 
 }).call(this);
-
-function runBatch(itr, msg) {
-
-    $requestData = $('.ChatInput-input');
-
-    if (itr == 1) {
-        $requestData.html(order1);
-        watson();
-    }
-    if (itr == 2) {
-        $requestData.html(order2);
-        watson();
-    }
-    if (itr == 3) {
-        $requestData.html(order3);
-        watson();
-    }
-    if (itr == 4) {
-        $requestData.html(address);
-        watson();
-    }
-    if (itr == 5) {
-        $requestData.html(nameM);
-        watson();
-    }
-    if (itr == 6) {
-        $requestData.html(phone);
-        watson();
-    }
-    if (itr == 7) {
-
-    }
-}
 
 function addToDB() {
     msgas = chatBody.find('div.ChatItem--customer').find('div.ChatItem-chatContent').find('div.ChatItem-chatText').last().html();
@@ -123,18 +83,19 @@ async function watson() {
                         '<li>' + element.label + '</li>'
                     );
                 });
-                bringUpForm.click();
-                itr = itr + 1;
-
-                if (itr == 1) {
-
+                if (data.message == "Okay. Enter the product name and quantity together as comma-separated values.") {
+                    bringUpForm.click();
                 }
 
-                if (flag == true)
-                    setTimeout(
-                        function() {
-                            runBatch(itr, data.message);
-                        }, 1000);
+                if (data.message == "What is your address?") {
+                    getLocation();
+                }
+
+                if (data.message.substring(0, 6) == "Thanks") {
+                    addToDB();
+                }
+
+                itr = itr + 1;
 
             } else {
 
@@ -142,33 +103,19 @@ async function watson() {
                 $('.ChatWindow').append(
                     '<div class="ChatItem ChatItem--customer"> <div class="ChatItem-meta"> <div class="ChatItem-avatar"> <img class="ChatItem-avatarImage" src="static/watson.png"> </div> </div> <div class="ChatItem-chatContent"> <div class="ChatItem-chatText">' + data.message + '</div> <div class="ChatItem-timeStamp"><strong>Watson Chatbot</strong></div> </div> </div>');
 
-                if (data.message == "Okay. Enter the product and quantity together as comma-separated values.") {
+                if (data.message == "Okay. Enter the product name and quantity together as comma-separated values.") {
                     bringUpForm.click();
                 }
 
-                itr = itr + 1;
-
-                if (itr == 1) {
-
-                }
-
-                if (flag == true)
-                    setTimeout(
-                        function() {
-                            runBatch(itr, data.message);
-                        }, 1000);
-
-
-                if (itr == 2) {
-                    // get Location co-ordinates
+                if (data.message == "What is your address?") {
                     getLocation();
-                    // make api call to get acurate location
-                    // show a prompt displaying address and asking for confirmation
-                    // if user says yes send the location to the watson()
-                    // if user says no send no send blank text to watson()
                 }
-                if (itr == 5)
+
+                if (data.message.substring(0, 6) == "Thanks") {
                     addToDB();
+                }
+
+                itr = itr + 1;
             }
         }
     });
@@ -183,21 +130,6 @@ function run() {
     $requestData = $('.ChatInput-input');
     $requestData.html('place an order');
     watson();
-}
-
-function simulateKey(keyCode, type, modifiers) {
-    var evtName = (typeof(type) === "string") ? "key" + type : "keydown";
-    var modifier = (typeof(modifiers) === "object") ? modifier : {};
-
-    var event = document.createEvent("HTMLEvents");
-    event.initEvent(evtName, true, false);
-    event.keyCode = keyCode;
-
-    for (var i in modifiers) {
-        event[i] = modifiers[i];
-    }
-
-    document.dispatchEvent(event);
 }
 
 async function initWatsonAssistant() {
@@ -227,17 +159,6 @@ async function initWatsonAssistant() {
             }
         }
     });
-}
-
-function automate(nam, pho, ord1, ord2, ord3, add) {
-    phone = pho;
-    address = add;
-    nameM = nam;
-    order1 = ord1;
-    order3 = ord2;
-    order2 = ord3;
-    flag = true;
-    run();
 }
 
 async function addDatabaseContents(respoName, respoContact, respOrder1, respAddress) {
@@ -355,16 +276,6 @@ $('#modalAction').on('click', function() {
             }
         }
         optionsSelected(selectedFromTemplate);
-        // if (selectedFromTemplate.length == 2) {
-        //     optionsSelected(selectedFromTemplate[0]);
-        //     setTimeout(() => optionsSelected(selectedFromTemplate[1]), 2000);
-        // } else if (selectedFromTemplate.length > 2) {
-        //     optionsSelected(selectedFromTemplate[0]);
-        //     setTimeout(() => optionsSelected(selectedFromTemplate[1]), 2000);
-        //     setTimeout(() => optionsSelected(selectedFromTemplate[2]), 4000);
-        // } else if (selectedFromTemplate.length == 1) {
-        //     optionsSelected(selectedFromTemplate[0]);
-        // } else {}
 
     }, 1000);
 });
