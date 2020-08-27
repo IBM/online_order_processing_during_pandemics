@@ -1,12 +1,10 @@
 # Use Watson Assistant to automate online order processing during pandemics
 
-How do we stop panic amongst people of hoarding essentials during lockdown? How do we enable people to procure essentials through digital mode? 
+How do we keep people from hoarding essential items during a pandemic and a lockdown? How can people get essential items through a digital mode?
 
-Nowadays, its a bit risky to visit a supermarket for grocery shopping given the social distancing factor. **Our solution offers you online shopping of essentials at your fingertips to manage your needs effortlessly.**
+Today, because of social distancing and other issues it can be risky for some people to shop for essential in person. This code pattern helps with this issue by giving people an online option to shop for essential items.
 
-In this code pattern, we build an AI-powered backend system that can take the daily essentials orders through online mode. The system processes the incoming text request by converting it to formatted orders list. An effective way of processing the information quickly.
-
-This AI powered backend system can be later connected to the inventory database for optimising supply chain management. This solution will be applicable for various domains such as healthcare, retail for ordering medicines and daily essentials (groceries), etc.
+In this code pattern, learn how to build an AI-powered back end system that can take the daily essentials orders through an online mode. The system processes the incoming text requests by converting them to formatted orders lists. Then, this system can be connected to the inventory database for optimizing supply chain management. This solution can be applied to various domains, such as ordering medicine and ordering groceries.
 
 When the reader has completed this Code Pattern, they will understand how to:
 
