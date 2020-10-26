@@ -42,6 +42,19 @@ try:
 except:
     pass
 
+#########################
+# Create Orders Table
+#########################
+table = ' CREATE TABLE ORDERS( \
+    ID int,NAME varchar(255), \
+    PHONE varchar(255), \
+    ORDERS varchar(255), \
+    ADDRESS varchar(255)	); ' 
+try:
+    ibm_db.exec_immediate(conn, table)
+except:
+    pass
+
 
 with open('watson-assistant-credentials.json', 'r') as credentialsFile:
     credentials = json.loads(credentialsFile.read())
