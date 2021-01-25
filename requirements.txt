@@ -6,3 +6,4 @@ ibm_db
 ibmdbpy
 ibm_watson==4.1.0
 geopy==1.21.0
+PyJWT==1.7.1
