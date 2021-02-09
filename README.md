@@ -1,4 +1,4 @@
-# Use Watson Assistant to automate online order processing during pandemics
+# Online order processing during pandemics
 
 How do we keep people from hoarding essential items during a pandemic and a lockdown? How can people get essential items through a digital mode?
 
