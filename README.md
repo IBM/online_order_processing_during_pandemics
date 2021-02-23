@@ -14,7 +14,7 @@ When the reader has completed this Code Pattern, they will understand how to:
 * Deploy the solution on IBM Cloud.
 * Enable processing orders & inventory management on real-time basis.
 
-![](doc/source/images/architecture.png)
+![](doc/source/images/architecture-online.png)
 
 
 ## Flow
