@@ -4,6 +4,7 @@ import os
 import requests
 from ibm_watson import AssistantV2
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+import base64
 try:
     import ibm_db
 except:
@@ -22,25 +23,36 @@ sessionid = ''
 with open('ibm-db2-credentials.json', 'r') as credentialsFile:
     credentials1 = json.loads(credentialsFile.read())
 
-dsn_driver = "IBM DB2 ODBC DRIVER"
-dsn_database = credentials1['db']
-dsn_hostname = credentials1['host']
-dsn_port = "50000"
-dsn_uid = credentials1['username']
-dsn_pwd = credentials1['password']
+try:
+    dsn_database = credentials1['connection']['db2']['database']
+    dsn_hostname = credentials1['connection']['db2']['hosts'][0]['hostname']
+    dsn_port = credentials1['connection']['db2']['hosts'][0]['port']
+    dsn_uid = credentials1['connection']['db2']['authentication']['username']
+    dsn_pwd = credentials1['connection']['db2']['authentication']['password']
 
-dsn = (
-    "DRIVER={{IBM DB2 ODBC DRIVER}};"
-    "DATABASE={0};"
-    "HOSTNAME={1};"
-    "PORT={2};"
-    "PROTOCOL=TCPIP;"
-    "UID={3};"
-    "PWD={4};").format(dsn_database, dsn_hostname, dsn_port, dsn_uid, dsn_pwd)
+    certificate = credentials1['connection']['db2']['certificate']['certificate_base64']
+    ssl_certificate_bytes = base64.b64decode(certificate)
+    ssl_certificate = ssl_certificate_bytes.decode('ascii')
+except:
+    print('No DB2 credentials found')
+
+db2_conn_cert = os.path.join(os.path.expanduser('~'),'ibm-db2-ssl.cert')
+with open(db2_conn_cert, "w") as f:
+    f.write(ssl_certificate)
+
+dsn = 'DATABASE={db};HOSTNAME={host};PORT={port};PROTOCOL=TCPIP;UID={uid};PWD={pwd};SECURITY=SSL;SSLServerCertificate={cert}'.format(
+    db=dsn_database,
+    host=dsn_hostname,
+    port=dsn_port,
+    uid=dsn_uid,
+    pwd=dsn_pwd,
+    cert=db2_conn_cert
+)
+
 try:
     conn = ibm_db.connect(dsn, "", "")
-except:
-    pass
+except Exception as e:
+    print(e)
 
 #########################
 # Create Orders Table
@@ -52,8 +64,8 @@ table = ' CREATE TABLE ORDERS( \
     ADDRESS varchar(255)	); ' 
 try:
     ibm_db.exec_immediate(conn, table)
-except:
-    pass
+except Exception as e:
+    print("Create Table error-> ",e)
 
 
 with open('watson-assistant-credentials.json', 'r') as credentialsFile:
@@ -93,7 +105,7 @@ def destroySession():
         assistant_id=assistantid, session_id=sessionid).get_result()
         print(response)
     except Exception as e:
-        pass
+        print(e)
 
 # assistant.delete_session(skillid, "<YOUR SESSION ID>").get_result()
 
@@ -234,3 +246,5 @@ port = os.getenv('VCAP_APP_PORT', '8080')
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)
     app.run(debug=True, host='0.0.0.0', port=port)
+
+    
