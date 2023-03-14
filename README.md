@@ -1,3 +1,7 @@
+# WARNING: This repository is no longer maintained
+
+> This repository will not be updated. The repository will be kept available in read-only mode.
+
 # Online order processing during pandemics
 
 How do we keep people from hoarding essential items during a pandemic and a lockdown? How can people get essential items through a digital mode?
